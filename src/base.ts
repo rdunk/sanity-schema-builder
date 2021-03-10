@@ -146,7 +146,7 @@ export abstract class GeneratorWithFields extends StandardGenerator {
     this._predefinedFields = predefinedFields || {};
   }
 
-  _withField(field: string | StandardGenerator) {
+  private _withField(field: string | StandardGenerator) {
     if (typeof field === 'object') {
       this._fields.push(field);
     } else if (typeof field === 'string') {
