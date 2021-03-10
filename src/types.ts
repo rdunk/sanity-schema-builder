@@ -65,6 +65,14 @@ export interface SchemaFieldset {
   };
 }
 
+export type SchemaArrayLayout = 'tags' | 'grid';
+export type SchemaArrayEditModal = 'dialog' | 'fullscreen' | 'popover';
+
+export type SchemaArrayList = {
+  title: string;
+  value: string;
+};
+
 export interface SchemaObjectFieldset {
   name: string;
   title?: string;
@@ -75,18 +83,18 @@ export interface SchemaObjectFieldset {
   };
 }
 
-export type SchemaStringPredefined =
-  | string
-  | {
-      title: string;
-      value: string;
-    };
-
 export type SchemaNumberPredefined =
   | number
   | {
       title: string;
       value: number;
+    };
+
+export type SchemaStringPredefined =
+  | string
+  | {
+      title: string;
+      value: string;
     };
 
 export type SchemaBooleanLayout = 'switch' | 'checkbox';
