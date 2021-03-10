@@ -29,11 +29,12 @@ export default class SchemaBuilder {
     this._predefinedFields = predefinedFields || {};
   }
 
-  addPredefinedField(key: string, field: PredefinedField) {
+  define(key: string, field: PredefinedField) {
     this._predefinedFields[key] = field;
   }
 
   // Base
+  f = this.field;
   field(type: string, name?: string, title?: string) {
     return new FieldGenerator(this._predefinedFields, type, name, title);
   }
@@ -52,6 +53,7 @@ export default class SchemaBuilder {
   date(name: string, title?: string) {
     return new DateFieldGenerator(name, title);
   }
+  dt = this.datetime;
   datetime(name: string, title?: string) {
     return new DatetimeFieldGenerator(name, title);
   }
@@ -59,6 +61,7 @@ export default class SchemaBuilder {
   document(name: string, title?: string) {
     return new DocumentGenerator(this._predefinedFields, name, title);
   }
+  fset = this.fieldset;
   fieldset(name: string, title?: string) {
     return new FieldSetGenerator(name, title);
   }
@@ -99,10 +102,12 @@ export default class SchemaBuilder {
     return new UrlFieldGenerator(name, title);
   }
   // Orderings
+  sort = this.ordering;
   ordering(name: string, title?: string) {
     return new OrderingGenerator(name, title);
   }
   // Preview
+  view = this.ordering;
   preview(select?: Record<string, string>) {
     return new PreviewGenerator(select);
   }

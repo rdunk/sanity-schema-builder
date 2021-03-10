@@ -496,7 +496,7 @@ test('adds a predefined field after initialisation', () => {
     title: 'Title',
   };
   const S = new SchemaBuilder();
-  S.addPredefinedField('title', predefinedField);
+  S.define('title', predefinedField);
   const schema = {
     type: 'object',
     name: 'testObject',

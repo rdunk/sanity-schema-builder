@@ -14,6 +14,7 @@ const caption = {
   of: [{ type: 'block' }],
 };
 
+// @TODO Add options!
 export class ImageFieldGenerator extends GeneratorWithFields {
   constructor(
     predefinedFields: PredefinedField | undefined,
