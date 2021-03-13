@@ -11,7 +11,7 @@ Writing complex schema can often involve a lot of repetition. The Sanity Schema 
 Do this...
 
 ```ts
-import SchemaBuilder from 'sanity-schema-builder';
+import { SchemaBuilder } from 'sanity-schema-builder';
 import { OkHandIcon } from '@sanity/icons';
 const S = new SchemaBuilder();
 
@@ -60,7 +60,7 @@ $ npm i sanity-schema-builder
 Define your schema file:
 
 ```ts
-import SchemaBuilder from 'sanity-schema-builder';
+import { SchemaBuilder } from 'sanity-schema-builder';
 
 const S = new SchemaBuilder();
 

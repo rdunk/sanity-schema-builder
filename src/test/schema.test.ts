@@ -1,4 +1,4 @@
-import SchemaBuilder from '../index';
+import { SchemaBuilder } from '../index';
 
 const S = new SchemaBuilder();
 

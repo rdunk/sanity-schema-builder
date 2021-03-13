@@ -22,7 +22,7 @@ import { OrderingGenerator } from './ordering';
 import { PreviewGenerator } from './preview';
 import { PredefinedField } from './types';
 
-export default class SchemaBuilder {
+export class SchemaBuilder {
   private _predefinedFields: Record<string, PredefinedField>;
 
   constructor(predefinedFields?: Record<string, Record<string, any>>) {
