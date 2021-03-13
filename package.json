@@ -7,6 +7,10 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rdunk/sanity-schema-builder.git"
+  },
   "scripts": {
     "build": "npm run clean && npm run build:pkg",
     "build:pkg": "rollup -c rollup.config.js",
