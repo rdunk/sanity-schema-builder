@@ -6,7 +6,7 @@ export class NumberFieldGenerator extends StandardGenerator {
     list?: SchemaNumberPredefined[];
   } = {};
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('number', name, title);
   }
 

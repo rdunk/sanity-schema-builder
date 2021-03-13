@@ -13,18 +13,18 @@ export class ObjectFieldGenerator extends GeneratorWithFields {
 
   constructor(
     predefinedFields: PredefinedField | undefined,
-    name: string,
+    name?: string,
     title?: string,
   ) {
     super(predefinedFields, 'object', name, title);
   }
 
-  collapsible(isCollapsible: boolean) {
+  collapsible(isCollapsible = true) {
     this._options.collapsible = isCollapsible;
     return this;
   }
 
-  collapsed(isCollapsed: boolean) {
+  collapsed(isCollapsed = true) {
     this._options.collapsed = isCollapsed;
     return this;
   }

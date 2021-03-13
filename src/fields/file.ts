@@ -9,7 +9,7 @@ export class FileFieldGenerator extends GeneratorWithFields {
 
   constructor(
     predefinedFields: PredefinedField | undefined,
-    name: string,
+    name?: string,
     title?: string,
   ) {
     super(predefinedFields, 'file', name, title);

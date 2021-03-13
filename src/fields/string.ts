@@ -12,7 +12,7 @@ export class StringFieldGenerator extends StandardGenerator {
     direction?: SchemaStringDirection;
   } = {};
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('string', name, title);
   }
 

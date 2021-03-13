@@ -22,7 +22,7 @@ test('adds readonly property', () => {
     title: 'Test Read only',
     readOnly: true,
   };
-  const generated = S.str('testReadOnly').readOnly(true).generate();
+  const generated = S.str('testReadOnly').readOnly().generate();
   expect(generated).toStrictEqual(schema);
 });
 
@@ -33,7 +33,7 @@ test('adds readonly property', () => {
     title: 'Test Hidden',
     hidden: true,
   };
-  const generated = S.str('testHidden').hidden(true).generate();
+  const generated = S.str('testHidden').hidden().generate();
   expect(generated).toStrictEqual(schema);
 });
 
@@ -322,7 +322,7 @@ test('generates basic text', () => {
   expect(generated).toStrictEqual(schema);
 });
 
-test('generates an array of strings', () => {
+test('generates an array of strings with options', () => {
   const schema = {
     type: 'array',
     name: 'testArray',
@@ -339,10 +339,33 @@ test('generates an array of strings', () => {
         type: 'string',
       },
     ],
+    options: {
+      sortable: false,
+      layout: 'grid',
+    },
   };
   const generated = S.arr('testArray')
     .of([S.str('title'), S.str('description')])
+    .sortable(false)
+    .layout('grid')
     .generate();
+  expect(generated).toStrictEqual(schema);
+});
+
+test('generates an array of predefined strings', () => {
+  const list = [
+    { title: 'Foo', value: 'foo' },
+    { title: 'Bar', value: 'bar' },
+    { title: 'Baz', value: 'baz' },
+  ];
+  const schema = {
+    type: 'array',
+    name: 'testArray',
+    title: 'Test Array',
+    of: [{ type: 'string' }],
+    options: { list },
+  };
+  const generated = S.arr('testArray').of([S.str()]).list(list).generate();
   expect(generated).toStrictEqual(schema);
 });
 
@@ -441,7 +464,7 @@ test('generates an object', () => {
     },
   };
   const generated = S.obj('testObject')
-    .collapsible(true)
+    .collapsible()
     .collapsed(false)
     .generate();
   expect(generated).toStrictEqual(schema);
@@ -474,7 +497,7 @@ test('generates an object with fieldsets', () => {
   };
   const generated = S.obj('testObject')
     .fieldsets([
-      S.fieldset('testFieldset').collapsed(true).collapsible(false).columns(3),
+      S.fieldset('testFieldset').collapsed().collapsible(false).columns(3),
     ])
     .fields([S.str('name').fieldset('testFieldset')])
     .generate();
@@ -546,6 +569,7 @@ test('adds a predefined field after initialisation', () => {
   const generated = S.obj('testObject').field('title').generate();
   expect(generated).toStrictEqual(schema);
 });
+
 test('use a predefined field in an array', () => {
   const predefinedField = {
     type: 'string',

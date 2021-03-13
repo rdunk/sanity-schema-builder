@@ -4,7 +4,7 @@ import { SchemaField } from '../types';
 export class TextFieldGenerator extends StandardGenerator {
   _rows?: number;
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('text', name, title);
   }
 

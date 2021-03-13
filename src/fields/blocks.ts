@@ -60,7 +60,7 @@ export class BlocksFieldGenerator extends GeneratorWithFields {
 
   constructor(
     predefinedFields: PredefinedField | undefined,
-    name: string,
+    name?: string,
     title?: string,
   ) {
     super(predefinedFields, 'array', name, title);

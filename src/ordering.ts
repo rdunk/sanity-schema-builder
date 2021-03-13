@@ -4,7 +4,7 @@ import { SchemaOrder, SchemaOrdering } from './types';
 export class OrderingGenerator extends BaseGenerator {
   protected _orders: SchemaOrder[];
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super(name, title);
     this._orders = [];
   }

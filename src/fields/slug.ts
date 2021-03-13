@@ -9,7 +9,7 @@ export class SlugFieldGenerator extends StandardGenerator {
     isUnique?: () => any;
   } = {};
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('slug', name, title);
   }
 

@@ -6,7 +6,7 @@ export class BooleanFieldGenerator extends StandardGenerator {
     layout?: SchemaBooleanLayout;
   } = {};
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('boolean', name, title);
   }
 

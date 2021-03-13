@@ -12,7 +12,7 @@ export class ReferenceFieldGenerator extends StandardGenerator {
   protected _filterParams?: SchemaRefrenceFilterParams = undefined;
   protected _weak?: boolean;
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('reference', name, title);
   }
 

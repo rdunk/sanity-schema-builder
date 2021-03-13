@@ -25,7 +25,7 @@ export class ImageFieldGenerator extends GeneratorWithFields {
 
   constructor(
     predefinedFields: PredefinedField | undefined,
-    name: string,
+    name?: string,
     title?: string,
   ) {
     super(predefinedFields, 'image', name, title);

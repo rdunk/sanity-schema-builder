@@ -3,18 +3,24 @@ import { SchemaFieldset } from '../types';
 import { generateTitle } from '../util/title';
 
 export class FieldSetGenerator extends BaseGenerator {
+  protected _name: string;
   protected _options: {
     collapsible?: boolean;
     collapsed?: boolean;
     columns?: number;
   } = {};
 
-  collapsible(isCollapsible: boolean) {
+  constructor(name: string, title?: string) {
+    super(name, title);
+    this._name = name;
+  }
+
+  collapsible(isCollapsible = true) {
     this._options.collapsible = isCollapsible;
     return this;
   }
 
-  collapsed(isCollapsed: boolean) {
+  collapsed(isCollapsed = true) {
     this._options.collapsed = isCollapsed;
     return this;
   }

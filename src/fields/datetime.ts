@@ -8,7 +8,7 @@ export class DatetimeFieldGenerator extends StandardGenerator {
     calendarTodayLabel?: string;
   } = {};
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('datetime', name, title);
   }
 

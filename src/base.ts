@@ -4,10 +4,10 @@ import { SchemaValidator, SchemaOptions, SchemaField } from './types';
 import { subgenerate, subgenerateMany } from './util/generate';
 
 export abstract class BaseGenerator {
-  protected _name: string;
+  protected _name?: string;
   protected _title?: string;
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     this._name = name;
     this._title = title;
   }
@@ -33,7 +33,7 @@ export abstract class StandardGenerator extends BaseGenerator {
   protected _preview?: PreviewGenerator;
   protected _fieldset?: string;
 
-  constructor(type: string, name: string, title?: string) {
+  constructor(type: string, name?: string, title?: string) {
     super(name, title);
     this._type = type;
   }
@@ -139,7 +139,7 @@ export abstract class GeneratorWithFields extends StandardGenerator {
   constructor(
     predefinedFields: Record<string, any> | undefined,
     type: string,
-    name: string,
+    name?: string,
     title?: string,
   ) {
     super(type, name, title);
@@ -147,7 +147,7 @@ export abstract class GeneratorWithFields extends StandardGenerator {
   }
 
   field(field: string | StandardGenerator) {
-    // @TODO Better type checking?
+    // @TODO Better type checking here?
     if (typeof field === 'object') {
       this._fields.push(field);
     } else if (typeof field === 'string') {

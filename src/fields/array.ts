@@ -17,7 +17,7 @@ export class ArrayFieldGenerator extends GeneratorWithFields {
 
   constructor(
     predefinedFields: PredefinedField | undefined,
-    name: string,
+    name?: string,
     title?: string,
   ) {
     super(predefinedFields, 'array', name, title);
@@ -32,7 +32,7 @@ export class ArrayFieldGenerator extends GeneratorWithFields {
     return super.fields(fields);
   }
 
-  sortable(sortable: boolean) {
+  sortable(sortable = true) {
     this._options.sortable = sortable;
     return this;
   }

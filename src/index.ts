@@ -40,21 +40,21 @@ export default class SchemaBuilder {
   }
   // Field types
   arr = this.array;
-  array(name: string, title?: string) {
+  array(name?: string, title?: string) {
     return new ArrayFieldGenerator(this._predefinedFields, name, title);
   }
-  blocks(name: string, title?: string) {
+  blocks(name?: string, title?: string) {
     return new BlocksFieldGenerator(this._predefinedFields, name, title);
   }
   bool = this.boolean;
-  boolean(name: string, title?: string) {
+  boolean(name?: string, title?: string) {
     return new BooleanFieldGenerator(name, title);
   }
-  date(name: string, title?: string) {
+  date(name?: string, title?: string) {
     return new DateFieldGenerator(name, title);
   }
   dt = this.datetime;
-  datetime(name: string, title?: string) {
+  datetime(name?: string, title?: string) {
     return new DatetimeFieldGenerator(name, title);
   }
   doc = this.document;
@@ -65,45 +65,45 @@ export default class SchemaBuilder {
   fieldset(name: string, title?: string) {
     return new FieldSetGenerator(name, title);
   }
-  file(name: string, title?: string) {
+  file(name?: string, title?: string) {
     return new FileFieldGenerator(this._predefinedFields, name, title);
   }
   geo = this.geopoint;
-  geopoint(name: string, title?: string) {
+  geopoint(name?: string, title?: string) {
     return new GeopointFieldGenerator(name, title);
   }
   img = this.image;
-  image(name: string, title?: string) {
+  image(name?: string, title?: string) {
     return new ImageFieldGenerator(this._predefinedFields, name, title);
   }
   num = this.number;
-  number(name: string, title?: string) {
+  number(name?: string, title?: string) {
     return new NumberFieldGenerator(name, title);
   }
   obj = this.object;
-  object(name: string, title?: string) {
+  object(name?: string, title?: string) {
     return new ObjectFieldGenerator(this._predefinedFields, name, title);
   }
   ref = this.reference;
-  reference(name: string, title?: string) {
+  reference(name?: string, title?: string) {
     return new ReferenceFieldGenerator(name, title);
   }
-  slug(name: string, title?: string) {
+  slug(name?: string, title?: string) {
     return new SlugFieldGenerator(name, title);
   }
   str = this.string;
-  string(name: string, title?: string) {
+  string(name?: string, title?: string) {
     return new StringFieldGenerator(name, title);
   }
-  text(name: string, title?: string) {
+  text(name?: string, title?: string) {
     return new TextFieldGenerator(name, title);
   }
-  url(name: string, title?: string) {
+  url(name?: string, title?: string) {
     return new UrlFieldGenerator(name, title);
   }
   // Orderings
   sort = this.ordering;
-  ordering(name: string, title?: string) {
+  ordering(name?: string, title?: string) {
     return new OrderingGenerator(name, title);
   }
   // Preview

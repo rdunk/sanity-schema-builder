@@ -6,7 +6,7 @@ export class DateFieldGenerator extends StandardGenerator {
     calendarTodayLabel?: string;
   } = {};
 
-  constructor(name: string, title?: string) {
+  constructor(name?: string, title?: string) {
     super('date', name, title);
   }
 
