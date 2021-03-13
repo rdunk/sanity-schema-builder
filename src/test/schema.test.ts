@@ -22,7 +22,8 @@ test('adds readonly property', () => {
     title: 'Test Read only',
     readOnly: true,
   };
-  expect(S.str('testReadOnly').readOnly(true).generate()).toStrictEqual(schema);
+  const generated = S.str('testReadOnly').readOnly(true).generate();
+  expect(generated).toStrictEqual(schema);
 });
 
 test('adds readonly property', () => {
@@ -32,7 +33,8 @@ test('adds readonly property', () => {
     title: 'Test Hidden',
     hidden: true,
   };
-  expect(S.str('testHidden').hidden(true).generate()).toStrictEqual(schema);
+  const generated = S.str('testHidden').hidden(true).generate();
+  expect(generated).toStrictEqual(schema);
 });
 
 test('generates a title automatically if not supplied', () => {
@@ -344,9 +346,9 @@ test('generates an array of strings', () => {
   expect(generated).toStrictEqual(schema);
 });
 
-test('errors if predefined array field not found', () => {
+test('throws if predefined array field not found', () => {
   const generatorFn = () =>
-    S.array('testArray').of('thisIsNotDefined').generate();
+    S.array('testArray').of(['thisIsNotDefined']).generate();
   expect(generatorFn).toThrow();
 });
 
@@ -485,7 +487,36 @@ test('generates an object with a predefined field', () => {
     title: 'Test Object',
     fields: [predefinedField],
   };
-  const generated = S.obj('testObject').fields('title').generate();
+  const generated = S.obj('testObject').field('title').generate();
+  expect(generated).toStrictEqual(schema);
+});
+
+test('generates an image with a field', () => {
+  const schema = {
+    type: 'image',
+    name: 'testImage',
+    title: 'Test Image',
+    fields: [
+      {
+        type: 'string',
+        name: 'testAlt',
+        title: 'Test Alt',
+      },
+    ],
+    options: {
+      metadata: ['exif'],
+      hotspot: true,
+      storeOriginalFilename: true,
+      accept: 'image/*',
+    },
+  };
+  const generated = S.img('testImage')
+    .field(S.str('testAlt'))
+    .metadata(['exif'])
+    .hotspot()
+    .storeOriginalFilename()
+    .accept('image/*')
+    .generate();
   expect(generated).toStrictEqual(schema);
 });
 
@@ -503,6 +534,26 @@ test('adds a predefined field after initialisation', () => {
     title: 'Test Object',
     fields: [predefinedField],
   };
-  const generated = S.obj('testObject').fields('title').generate();
+  const generated = S.obj('testObject').field('title').generate();
+  expect(generated).toStrictEqual(schema);
+});
+
+test('adds a predefined field created with the schema builder', () => {
+  const S = new SchemaBuilder();
+  const predefinedField = S.str('title').generate();
+  S.define('title', predefinedField);
+  const schema = {
+    type: 'object',
+    name: 'testObject',
+    title: 'Test Object',
+    fields: [
+      {
+        type: 'string',
+        name: 'title',
+        title: 'Title',
+      },
+    ],
+  };
+  const generated = S.obj('testObject').field('title').generate();
   expect(generated).toStrictEqual(schema);
 });
