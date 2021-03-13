@@ -25,7 +25,7 @@ import { PredefinedField } from './types';
 export default class SchemaBuilder {
   private _predefinedFields: Record<string, PredefinedField>;
 
-  constructor(predefinedFields?: Record<string, any>) {
+  constructor(predefinedFields?: Record<string, Record<string, any>>) {
     this._predefinedFields = predefinedFields || {};
   }
 

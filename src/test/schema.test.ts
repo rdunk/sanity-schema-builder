@@ -352,6 +352,15 @@ test('throws if predefined array field not found', () => {
   expect(generatorFn).toThrow();
 });
 
+test('throws if fields method is used on array', () => {
+  const generatorFn = () =>
+    S.arr('testArray')
+      // @ts-expect-error
+      .fields([{ type: 'string' }])
+      .generate();
+  expect(generatorFn).toThrow();
+});
+
 test('generates blocktext', () => {
   const styles = [
     { title: 'Normal', value: 'normal' },
@@ -535,6 +544,22 @@ test('adds a predefined field after initialisation', () => {
     fields: [predefinedField],
   };
   const generated = S.obj('testObject').field('title').generate();
+  expect(generated).toStrictEqual(schema);
+});
+test('use a predefined field in an array', () => {
+  const predefinedField = {
+    type: 'string',
+    name: 'title',
+    title: 'Title',
+  };
+  const S = new SchemaBuilder({ title: predefinedField });
+  const schema = {
+    type: 'array',
+    name: 'testArray',
+    title: 'Test Array',
+    of: [predefinedField],
+  };
+  const generated = S.arr('testArray').of(['title']).generate();
   expect(generated).toStrictEqual(schema);
 });
 
