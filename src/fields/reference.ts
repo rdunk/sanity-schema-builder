@@ -7,10 +7,10 @@ import {
 } from '../types';
 
 export class ReferenceFieldGenerator extends StandardGenerator {
-  _references: SchemaReference[] = [];
-  _filter: SchemaReferenceFilter = '';
-  _filterParams?: SchemaRefrenceFilterParams = undefined;
-  _weak?: boolean;
+  protected _references: SchemaReference[] = [];
+  protected _filter: SchemaReferenceFilter = '';
+  protected _filterParams?: SchemaRefrenceFilterParams = undefined;
+  protected _weak?: boolean;
 
   constructor(name: string, title?: string) {
     super('reference', name, title);
@@ -42,7 +42,7 @@ export class ReferenceFieldGenerator extends StandardGenerator {
     return this;
   }
 
-  extendProperties(
+  protected extendProperties(
     field: SchemaField & { to?: SchemaReference[]; weak?: boolean },
   ) {
     if (this._weak !== undefined) {

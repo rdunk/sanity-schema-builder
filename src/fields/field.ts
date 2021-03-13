@@ -1,5 +1,5 @@
 import { GeneratorWithFields } from '../base';
-import { PredefinedField, SchemaField } from '../types';
+import { PredefinedField } from '../types';
 
 export class FieldGenerator extends GeneratorWithFields {
   constructor(
@@ -9,11 +9,5 @@ export class FieldGenerator extends GeneratorWithFields {
     title?: string,
   ) {
     super(predefinedFields, type, name || type, title);
-  }
-
-  extendProperties(field: SchemaField) {
-    if (this._fields.length) {
-      field.fields = this._fields;
-    }
   }
 }

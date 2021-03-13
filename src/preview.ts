@@ -5,9 +5,9 @@ import {
 } from './types';
 
 export class PreviewGenerator {
-  _select: Record<string, string>;
-  _prepare?: SchemaPreviewPrepare;
-  _component?: SchemaPreviewComponent;
+  protected _select: Record<string, string>;
+  protected _prepare?: SchemaPreviewPrepare;
+  protected _component?: SchemaPreviewComponent;
 
   constructor(select: Record<string, string> = {}) {
     this._select = select;

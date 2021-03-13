@@ -6,7 +6,7 @@ import {
 } from '../types';
 
 export class StringFieldGenerator extends StandardGenerator {
-  _options: {
+  protected _options: {
     list?: SchemaStringPredefined[];
     layout?: SchemaStringLayout;
     direction?: SchemaStringDirection;

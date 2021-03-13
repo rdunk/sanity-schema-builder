@@ -140,3 +140,5 @@ export type SchemaSlugSlugify = (
   input: string,
   type: Record<string, any>,
 ) => string;
+
+export type SchemaImageMetadata = 'exif' | 'location' | 'lqip' | 'palette';

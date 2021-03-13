@@ -3,7 +3,7 @@ import { SchemaFieldset } from '../types';
 import { generateTitle } from '../util/title';
 
 export class FieldSetGenerator extends BaseGenerator {
-  _options: {
+  protected _options: {
     collapsible?: boolean;
     collapsed?: boolean;
     columns?: number;

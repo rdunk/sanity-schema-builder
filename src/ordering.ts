@@ -2,7 +2,7 @@ import { BaseGenerator } from './base';
 import { SchemaOrder, SchemaOrdering } from './types';
 
 export class OrderingGenerator extends BaseGenerator {
-  _orders: SchemaOrder[];
+  protected _orders: SchemaOrder[];
 
   constructor(name: string, title?: string) {
     super(name, title);

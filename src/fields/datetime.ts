@@ -1,7 +1,7 @@
 import { StandardGenerator } from '../base';
 
 export class DatetimeFieldGenerator extends StandardGenerator {
-  _options: {
+  protected _options: {
     dateFormat?: string;
     timeFormat?: string;
     timeStep?: number;

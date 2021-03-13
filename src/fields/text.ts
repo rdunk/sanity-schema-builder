@@ -13,7 +13,7 @@ export class TextFieldGenerator extends StandardGenerator {
     return this;
   }
 
-  extendProperties(field: SchemaField & { rows?: number }) {
+  protected extendProperties(field: SchemaField & { rows?: number }) {
     if (this._rows) {
       field.rows = this._rows;
     }

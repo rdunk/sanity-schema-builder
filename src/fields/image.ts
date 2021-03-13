@@ -1,5 +1,5 @@
 import { GeneratorWithFields } from '../base';
-import { PredefinedField, SchemaField } from '../types';
+import { PredefinedField, SchemaImageMetadata } from '../types';
 
 const alt = {
   name: 'alt',
@@ -14,8 +14,15 @@ const caption = {
   of: [{ type: 'block' }],
 };
 
-// @TODO Add options!
 export class ImageFieldGenerator extends GeneratorWithFields {
+  protected _options: {
+    metadata?: SchemaImageMetadata[];
+    hotspot?: boolean;
+    storeOriginalFilename?: boolean;
+    accept?: string;
+    sources?: any[]; // @TODO Improve type
+  } = {};
+
   constructor(
     predefinedFields: PredefinedField | undefined,
     name: string,
@@ -28,7 +35,28 @@ export class ImageFieldGenerator extends GeneratorWithFields {
     };
   }
 
-  extendProperties(field: SchemaField) {
-    if (this._fields.length) field.fields = this._fields;
+  metadata(metadata: SchemaImageMetadata[]) {
+    this._options.metadata = metadata;
+    return this;
+  }
+
+  hotspot(hotspot = true) {
+    this._options.hotspot = hotspot;
+    return this;
+  }
+
+  storeOriginalFilename(store = true) {
+    this._options.storeOriginalFilename = store;
+    return this;
+  }
+
+  accept(mimeType: string) {
+    this._options.accept = mimeType;
+    return this;
+  }
+
+  sources(sources: any[]) {
+    this._options.sources = sources;
+    return this;
   }
 }

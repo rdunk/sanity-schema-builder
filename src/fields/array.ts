@@ -8,7 +8,7 @@ import {
 } from '../types';
 
 export class ArrayFieldGenerator extends GeneratorWithFields {
-  _options: {
+  protected _options: {
     sortable?: boolean;
     layout?: SchemaArrayLayout;
     list?: SchemaArrayList[];
@@ -28,7 +28,7 @@ export class ArrayFieldGenerator extends GeneratorWithFields {
     return this;
   }
 
-  of(fields: string | Array<string | StandardGenerator>) {
+  of(fields: Array<string | StandardGenerator>) {
     return super.fields(fields);
   }
 
@@ -52,7 +52,7 @@ export class ArrayFieldGenerator extends GeneratorWithFields {
     return this;
   }
 
-  extendProperties(field: SchemaField) {
+  protected extendProperties(field: SchemaField) {
     if (this._fields.length) field.of = this._fields;
   }
 }

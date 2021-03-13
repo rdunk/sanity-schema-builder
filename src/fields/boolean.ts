@@ -2,7 +2,7 @@ import { StandardGenerator } from '../base';
 import { SchemaBooleanLayout } from '../types';
 
 export class BooleanFieldGenerator extends StandardGenerator {
-  _options: {
+  protected _options: {
     layout?: SchemaBooleanLayout;
   } = {};
 

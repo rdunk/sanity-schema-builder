@@ -1,7 +1,7 @@
 import { StandardGenerator } from '../base';
 
 export class DateFieldGenerator extends StandardGenerator {
-  _options: {
+  protected _options: {
     dateFormat?: string;
     calendarTodayLabel?: string;
   } = {};

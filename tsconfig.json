@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    // "composite": true,
     "declaration": true,
     "declarationMap": false,
     "downlevelIteration": true,
@@ -9,7 +8,6 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "lib": ["es2018"],
-    // "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noImplicitAny": true,

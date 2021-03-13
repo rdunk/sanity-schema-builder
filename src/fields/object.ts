@@ -3,13 +3,10 @@ import { GeneratorWithFields } from '../base';
 import { PredefinedField, SchemaField } from '../types';
 import { FieldSetGenerator } from './fieldset';
 
-// @TODO support these:
-// inputComponent
-// preview
-
 export class ObjectFieldGenerator extends GeneratorWithFields {
-  _fieldsets: FieldSetGenerator[] = [];
-  _options: {
+  protected _fieldsets: FieldSetGenerator[] = [];
+  protected _inputComponent: any; // @TODO type React?
+  protected _options: {
     collapsible?: boolean;
     collapsed?: boolean;
   } = {};
@@ -37,12 +34,23 @@ export class ObjectFieldGenerator extends GeneratorWithFields {
     return this;
   }
 
-  extendProperties(field: SchemaField & { fieldsets: FieldSetGenerator[] }) {
-    if (this._fields.length) {
-      field.fields = this._fields;
-    }
+  inputComponent(component: any) {
+    this._inputComponent = component;
+    return this;
+  }
+
+  protected extendProperties(
+    field: SchemaField & {
+      fieldsets: FieldSetGenerator[];
+      inputComponent: any;
+    },
+  ) {
+    super.extendProperties(field);
     if (this._fieldsets.length) {
       field.fieldsets = this._fieldsets;
+    }
+    if (this._inputComponent) {
+      field.inputComponent = this._inputComponent;
     }
   }
 

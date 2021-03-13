@@ -9,9 +9,9 @@ import {
 } from '../types';
 
 export class BlockFieldGenerator extends StandardGenerator {
-  _styles: SchemaBlockStyle[] = [];
-  _lists: SchemaBlockList[] = [];
-  _marks: SchemaBlockMarks = {};
+  protected _styles: SchemaBlockStyle[] = [];
+  protected _lists: SchemaBlockList[] = [];
+  protected _marks: SchemaBlockMarks = {};
 
   constructor(
     styles: SchemaBlockStyle[],
@@ -24,7 +24,7 @@ export class BlockFieldGenerator extends StandardGenerator {
     this._marks = marks;
   }
 
-  extendProperties(
+  protected extendProperties(
     field: SchemaField & {
       styles: SchemaBlockStyle[];
       lists: SchemaBlockList[];
@@ -54,9 +54,9 @@ export class BlockFieldGenerator extends StandardGenerator {
 }
 
 export class BlocksFieldGenerator extends GeneratorWithFields {
-  _styles: SchemaBlockStyle[] = [];
-  _lists: SchemaBlockList[] = [];
-  _marks: SchemaBlockMarks = {};
+  protected _styles: SchemaBlockStyle[] = [];
+  protected _lists: SchemaBlockList[] = [];
+  protected _marks: SchemaBlockMarks = {};
 
   constructor(
     predefinedFields: PredefinedField | undefined,
@@ -86,11 +86,11 @@ export class BlocksFieldGenerator extends GeneratorWithFields {
     return this;
   }
 
-  of(fields: string | Array<string | StandardGenerator>) {
+  of(fields: Array<string | StandardGenerator>) {
     return super.fields(fields);
   }
 
-  extendProperties(field: SchemaField) {
+  protected extendProperties(field: SchemaField) {
     this._fields.unshift(
       new BlockFieldGenerator(this._styles, this._lists, this._marks),
     );

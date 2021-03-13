@@ -4,8 +4,8 @@ import { SchemaValidator, SchemaOptions, SchemaField } from './types';
 import { subgenerate, subgenerateMany } from './util/generate';
 
 export abstract class BaseGenerator {
-  _name: string;
-  _title?: string;
+  protected _name: string;
+  protected _title?: string;
 
   constructor(name: string, title?: string) {
     this._name = name;
@@ -24,14 +24,14 @@ export abstract class BaseGenerator {
 }
 
 export abstract class StandardGenerator extends BaseGenerator {
-  _type: string;
-  _description?: string;
-  _readOnly: boolean = false;
-  _hidden: boolean = false;
-  _options: SchemaOptions = {};
-  _validation?: SchemaValidator;
-  _preview?: PreviewGenerator;
-  _fieldset?: string;
+  protected _type: string;
+  protected _description?: string;
+  protected _readOnly: boolean = false;
+  protected _hidden: boolean = false;
+  protected _options: SchemaOptions = {};
+  protected _validation?: SchemaValidator;
+  protected _preview?: PreviewGenerator;
+  protected _fieldset?: string;
 
   constructor(type: string, name: string, title?: string) {
     super(name, title);
@@ -79,7 +79,7 @@ export abstract class StandardGenerator extends BaseGenerator {
   }
 
   // @ts-ignore
-  extendProperties(field: SchemaField) {}
+  protected extendProperties(field: SchemaField) {}
 
   generate() {
     if (!this._type) throw Error('Type is required');
@@ -133,8 +133,8 @@ export abstract class StandardGenerator extends BaseGenerator {
 }
 
 export abstract class GeneratorWithFields extends StandardGenerator {
-  _fields: StandardGenerator[] = [];
-  _predefinedFields: Record<string, any>;
+  protected _fields: StandardGenerator[] = [];
+  protected _predefinedFields: Record<string, any>;
 
   constructor(
     predefinedFields: Record<string, any> | undefined,
@@ -146,7 +146,8 @@ export abstract class GeneratorWithFields extends StandardGenerator {
     this._predefinedFields = predefinedFields || {};
   }
 
-  private _withField(field: string | StandardGenerator) {
+  field(field: string | StandardGenerator) {
+    // @TODO Better type checking?
     if (typeof field === 'object') {
       this._fields.push(field);
     } else if (typeof field === 'string') {
@@ -156,15 +157,18 @@ export abstract class GeneratorWithFields extends StandardGenerator {
         throw new Error(`Predefined field "${field}" not found.`);
       }
     }
+    return this;
   }
 
-  fields(fields: string | Array<string | StandardGenerator>) {
-    if (typeof fields === 'string') {
-      this._withField(fields);
-    } else if (Array.isArray(fields)) {
-      fields.forEach(this._withField, this);
-    }
+  fields(fields: Array<string | StandardGenerator>) {
+    fields.forEach(this.field, this);
     return this;
+  }
+
+  protected extendProperties(field: SchemaField) {
+    if (this._fields.length) {
+      field.fields = this._fields;
+    }
   }
 
   generate() {

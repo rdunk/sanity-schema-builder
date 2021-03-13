@@ -2,7 +2,7 @@ import { SchemaSlugSlugify } from 'src/types';
 import { StandardGenerator } from '../base';
 
 export class SlugFieldGenerator extends StandardGenerator {
-  _options: {
+  protected _options: {
     source?: string;
     maxLength?: number;
     slugify?: SchemaSlugSlugify;

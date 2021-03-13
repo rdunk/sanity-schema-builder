@@ -2,7 +2,7 @@ import { SchemaNumberPredefined } from 'src/types';
 import { StandardGenerator } from '../base';
 
 export class NumberFieldGenerator extends StandardGenerator {
-  _options: {
+  protected _options: {
     list?: SchemaNumberPredefined[];
   } = {};
 

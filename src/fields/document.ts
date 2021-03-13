@@ -4,9 +4,9 @@ import { PredefinedField, SchemaField, SchemaIcon } from '../types';
 import { subgenerateMany } from '../util/generate';
 
 export class DocumentGenerator extends GeneratorWithFields {
-  _liveEdit?: boolean;
-  _orderings: OrderingGenerator[] = [];
-  _icon?: SchemaIcon;
+  protected _liveEdit?: boolean;
+  protected _orderings: OrderingGenerator[] = [];
+  protected _icon?: SchemaIcon;
 
   constructor(
     predefinedFields: PredefinedField | undefined,
@@ -31,16 +31,14 @@ export class DocumentGenerator extends GeneratorWithFields {
     return this;
   }
 
-  extendProperties(
+  protected extendProperties(
     field: SchemaField & {
       orderings?: OrderingGenerator[];
       icon?: any;
       liveEdit?: boolean;
     },
   ) {
-    if (this._fields.length) {
-      field.fields = this._fields;
-    }
+    super.extendProperties(field);
     if (this._orderings.length) {
       field.orderings = this._orderings;
     }

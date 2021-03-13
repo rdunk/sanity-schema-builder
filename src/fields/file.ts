@@ -1,8 +1,8 @@
 import { GeneratorWithFields } from '../base';
-import { PredefinedField, SchemaField } from '../types';
+import { PredefinedField } from '../types';
 
 export class FileFieldGenerator extends GeneratorWithFields {
-  _options: {
+  protected _options: {
     accept?: string;
     storeOriginalFilename?: boolean;
   } = {};
@@ -23,9 +23,5 @@ export class FileFieldGenerator extends GeneratorWithFields {
   storeOriginalFilename(storeOriginalFilename = true) {
     this._options.storeOriginalFilename = storeOriginalFilename;
     return this;
-  }
-
-  extendProperties(field: SchemaField) {
-    if (this._fields.length) field.fields = this._fields;
   }
 }
