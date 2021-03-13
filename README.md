@@ -4,7 +4,7 @@
 
 Sanity Schema Builder lets you write schema programmatically. You can use it for defining specific fields within your existing schema, or for generating entire document definitions. It's like the official [Structure Builder](https://www.sanity.io/docs/structure-builder-introduction), but for schema.
 
-Writing complex schema can often involve a lot of repetition. The Sanity Schema Builder API gives you convenient methods that allow you to quickly define documents, fields, block text, previews, orderings, et al. It's written in TypeScript, so you get autocompletion suggestions as you write.
+Writing complex schema can often involve a lot of repetition. The Sanity Schema Builder API exposes convenient methods that allow you to quickly define documents, fields, block text, previews, orderings, et al. It's written in TypeScript, so you can benefit from automatic suggestions as you write.
 
 ## TL;DR
 
@@ -80,10 +80,10 @@ const document = S.document('person') // Create a new document
   .fields([ // Add some fields to the document
     S.string('firstName'), // A basic string with the name 'firstName'. A title of 'First Name' will be generated.
     S.string('lastName', 'Family Name'), // Define the title explicitly
-    S.str('nickname') // Use a shorthand alias
+    S.str('nickname') // Use the "str" shorthand alias
       .title('Also known as...'),  // Set the title using a method
     S.number('age')
-      .description('Will be kept secret.'), // Add a generic field property
+      .description('Will be kept secret.'), // Add a description (a generic field property)
     S.geopoint('location')
       .readOnly()
       .hidden(), // Chain multiple properties
@@ -166,3 +166,34 @@ In addition, the following methods and aliases are available for more specific o
 | generate |       | Generates the schema. All schema type chains must end with this method.                                  |
 
 ## Predefined fields
+
+You can pass the schema builder predefined fields which you can then reference as strings when adding sub-fields to objects or other object-like fields. These can be generated using the Schema builder or written manually.
+
+Predefined fields can be passed to the SchemaBuilder constructor, or added after initialization using the `define` method.
+
+```ts
+// Pass in via the constructor
+const S = new SchemaBuilder({
+  title: {
+    type: 'string',
+    name: 'title',
+    title: 'Title',
+  },
+});
+// Or using the define method
+S.define('name', S.str('name').generate());
+// Create an array of predefined fields
+const someArray = S.arr().of(['title', 'name']);
+```
+
+## Contributing
+
+Contributions are welcome, some ideas of things to help with:
+
+- Specific documentation for each class method.
+- Some types could be improved, check `@TODO` comments in the source code.
+- Test coverage could be expanded, especially for some of the higher-order methods.
+
+## License
+
+MIT
