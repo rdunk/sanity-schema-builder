@@ -20,7 +20,7 @@ export type SchemaPreviewComponent = any;
 
 // @TODO type properly
 export type SchemaPreviewPrepare = (
-  selected: Record<string, any>,
+  selected: Record<string, any>
 ) => Record<string, any>;
 
 export interface SchemaPreview {
@@ -107,13 +107,13 @@ export type SchemaStringDirection = 'horizontal' | 'vertical';
 export type SchemaReference = Record<string, any>;
 
 // @TODO type properly
-export type SchemaReferenceFilter =
-  | ((options: {
-      object: any;
-      parent: any;
-      parentPath: string;
-    }) => { filter: any; params: any })
-  | string;
+type SchemaReferenceFilterFn = (options: {
+  object: any;
+  parent: any;
+  parentPath: string;
+}) => Promise<{ filter: any; params: any }> | { filter: any; params: any };
+
+export type SchemaReferenceFilter = SchemaReferenceFilterFn | string;
 
 export type SchemaRefrenceFilterParams = Record<string, any>;
 
@@ -138,7 +138,7 @@ export interface SchemaBlockMarks {
 
 export type SchemaSlugSlugify = (
   input: string,
-  type: Record<string, any>,
+  type: Record<string, any>
 ) => string;
 
 export type SchemaImageMetadata = 'exif' | 'location' | 'lqip' | 'palette';

@@ -140,7 +140,7 @@ export abstract class GeneratorWithFields extends StandardGenerator {
     predefinedFields: Record<string, any> | undefined,
     type: string,
     name?: string,
-    title?: string,
+    title?: string
   ) {
     super(type, name, title);
     this._predefinedFields = predefinedFields || {};
