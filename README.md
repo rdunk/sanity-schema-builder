@@ -1,6 +1,17 @@
-# Sanity Schema Builder
-
-### A more efficient way of writing schema for Sanity.io.
+<div align="center">
+	<h1>Sanity Schema Builder</h1>
+  <p>
+    <img alt="NPM version" src="https://img.shields.io/npm/v/sanity-schema-builder?color=000&style=flat-square">
+    <img alt="NPM downloads" src="https://img.shields.io/npm/dm/sanity-schema-builder?color=000&style=flat-square">
+    <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/rdunk/sanity-schema-builder?color=000&style=flat-square">
+    <img alt="License" src="https://img.shields.io/npm/l/sanity-schema-builder.svg?color=000&style=flat-square">
+    </p>
+	</p>
+	<p>
+		<h3>A more efficient way of writing schema for Sanity.io.</h3>
+	<br>
+	<br>
+</div>
 
 Sanity Schema Builder lets you write schema programmatically. You can use it for defining specific fields within your existing schema, or for generating entire document definitions. It's like the official [Structure Builder](https://www.sanity.io/docs/structure-builder-introduction), but for schema.
 
@@ -51,13 +62,13 @@ export default {
 };
 ```
 
-## Installation
+## Install
 
 ```bash
-$ npm i sanity-schema-builder
+$ npm i sanity-schema-builder # or yarn add sanity-schema-builder
 ```
 
-Define your schema file:
+## Usage
 
 ```ts
 import { SchemaBuilder } from 'sanity-schema-builder';
