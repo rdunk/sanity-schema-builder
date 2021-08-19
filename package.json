@@ -1,6 +1,6 @@
 {
   "name": "sanity-schema-builder",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Programmatic schema builder for Sanity.io",
   "author": "Rupert Dunk <rupert@rupertdunk.com> (https://rupertdunk.com/)",
   "license": "MIT",
