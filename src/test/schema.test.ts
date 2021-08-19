@@ -99,6 +99,40 @@ test('generates a document with a field', () => {
   expect(generated).toStrictEqual(schema);
 });
 
+test('generates a document with a fieldset', () => {
+  const schema = {
+    type: 'document',
+    name: 'testDocument',
+    title: 'Test Document',
+    fieldsets: [
+      {
+        name: 'testFieldset',
+        title: 'Test Fieldset',
+        options: {
+          collapsed: true,
+          collapsible: false,
+          columns: 3,
+        },
+      },
+    ],
+    fields: [
+      {
+        type: 'string',
+        name: 'title',
+        title: 'Title',
+        fieldset: 'testFieldset',
+      },
+    ],
+  };
+  const generated = S.doc('testDocument')
+    .fieldsets([
+      S.fieldset('testFieldset').collapsed().collapsible(false).columns(3),
+    ])
+    .fields([S.str('title').fieldset('testFieldset')])
+    .generate();
+  expect(generated).toStrictEqual(schema);
+});
+
 test('generates a document with a preview', () => {
   const schema = {
     type: 'document',

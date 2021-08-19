@@ -2,10 +2,12 @@ import { OrderingGenerator } from '../ordering';
 import { GeneratorWithFields } from '../base';
 import { PredefinedField, SchemaField, SchemaIcon } from '../types';
 import { subgenerateMany } from '../util/generate';
+import { FieldSetGenerator } from './fieldset';
 
 export class DocumentGenerator extends GeneratorWithFields {
   protected _liveEdit?: boolean;
   protected _orderings: OrderingGenerator[] = [];
+  protected _fieldsets: FieldSetGenerator[] = [];
   protected _icon?: SchemaIcon;
 
   constructor(
@@ -31,11 +33,17 @@ export class DocumentGenerator extends GeneratorWithFields {
     return this;
   }
 
+  fieldsets(sets: FieldSetGenerator[]) {
+    this._fieldsets = sets;
+    return this;
+  }
+
   protected extendProperties(
     field: SchemaField & {
       orderings?: OrderingGenerator[];
       icon?: any;
       liveEdit?: boolean;
+      fieldsets: FieldSetGenerator[];
     },
   ) {
     super.extendProperties(field);
@@ -48,15 +56,23 @@ export class DocumentGenerator extends GeneratorWithFields {
     if (this._liveEdit) {
       field.liveEdit = true;
     }
+    if (this._fieldsets.length) {
+      field.fieldsets = this._fieldsets;
+    }
   }
 
   generate() {
     const field = super.generate() as SchemaField & {
+      fieldsets: FieldSetGenerator[];
       orderings: OrderingGenerator[];
     };
 
     if (field.orderings) {
       field.orderings = subgenerateMany(field.orderings);
+    }
+
+    if (field.fieldsets) {
+      field.fieldsets = subgenerateMany(field.fieldsets);
     }
 
     return field;
